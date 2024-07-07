@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Links = ["Home", "About", "Services", "Contact"];
 
@@ -33,11 +33,16 @@ const NavLink = ({ children }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Ensure that `isOpen` state is consistent between server and client
-    onClose(); // Ensure the menu is closed on initial render
+    setMounted(true);
   }, []);
+
+  if (!mounted) {
+    // Return null on initial render to avoid mismatch between server and client
+    return null;
+  }
 
   return (
     <Box bg="gray.900" px={4}>
@@ -77,7 +82,7 @@ export default function Navbar() {
         </Flex>
       </Flex>
 
-      {isOpen ? (
+      {isOpen && (
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4}>
             {Links.map((link) => (
@@ -85,8 +90,7 @@ export default function Navbar() {
             ))}
           </Stack>
         </Box>
-      ) : null}
+      )}
     </Box>
   );
 }
-    
