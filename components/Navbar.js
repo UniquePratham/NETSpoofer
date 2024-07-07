@@ -7,6 +7,7 @@ import {
   IconButton,
   useDisclosure,
   Stack,
+  Image,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
@@ -44,9 +45,11 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box color="teal.300" fontWeight="bold">
-              Your Logo
-            </Box>
+            <NextLink href="/" passHref>
+              <Link>
+                <Image src="/logo.png" alt="Logo" width="150px" height="auto" />
+              </Link>
+            </NextLink>
             <HStack
               as={"nav"}
               spacing={4}
@@ -60,8 +63,9 @@ export default function Navbar() {
           <Flex alignItems={"center"}>
             <NextLink href="#get-started" passHref>
               <Link
-                px={2}
-                py={1}
+                px={4}
+                py={2}
+                color="white"
                 rounded={"md"}
                 bg="teal.400"
                 _hover={{ bg: "teal.300" }}

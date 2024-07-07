@@ -1,13 +1,15 @@
 // components/HeroSection.js
-import { Box, Button, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
-import NextLink from "next/link";
+import { ParallaxProvider, ParallaxBanner } from "react-scroll-parallax";
 
 export default function HeroSection() {
   const getStartedRef = useRef(null);
 
   const scrollToGetStarted = () => {
-    getStartedRef.current.scrollIntoView({ behavior: "smooth" });
+    if (getStartedRef.current) {
+      getStartedRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
@@ -18,48 +20,57 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <>
-      <Box
-        w="100%"
-        h="100vh"
-        bg="gray.900"
-        color="white"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        textAlign="center"
-        flexDirection="column"
-      >
-        <Heading as="h1" size="2xl" mb={4} color="teal.300">
-          Custom Software Solutions
-        </Heading>
-        <Text fontSize="xl" mb={8}>
-          Unlock the full potential of your business with tailored software
-          solutions.
-        </Text>
-        <Button colorScheme="teal" size="lg" onClick={scrollToGetStarted}>
-          Get Started
-        </Button>
+    <ParallaxProvider>
+      <Box position="relative" overflow="hidden">
+        <ParallaxBanner
+          className="your-class"
+          layers={[
+            {
+              image:
+                "https://wallpapers.com/images/hd/cyan-northern-lights-landscape-3sshfp161f2x0y62.jpg",
+              amount: 0.3,
+            },
+          ]}
+          style={{
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            flexDirection: "column",
+            px: 4,
+            color: "white",
+          }}
+        >
+          <Box
+            w="100%"
+            h="100%"
+            bg="rgba(0,0,0,0.2)" // Adjust overlay opacity as needed
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            flexDirection="column"
+            position="absolute"
+            top="0"
+            left="0"
+            right="0"
+            bottom="0"
+            zIndex="1" // Ensures text is above the background image
+            px={4}
+          >
+            <Heading as="h1" size="3xl" mb={4} color="#0a121c">
+              NETSpoofer Provides
+            </Heading>
+            <Text fontSize="xl" mb={8} color="#1c334b">
+              Different Cybersecurity tools at One Place
+            </Text>
+            <Button color="#0a121c" size="lg" onClick={scrollToGetStarted}>
+              Get Started
+            </Button>
+          </Box>
+        </ParallaxBanner>
       </Box>
-      <Box
-        ref={getStartedRef}
-        id="get-started"
-        w="100%"
-        h="50vh"
-        bg="gray.800"
-        color="white"
-        p={8}
-      >
-        <VStack spacing={4}>
-          <Heading as="h2" size="xl">
-            Get Started
-          </Heading>
-          <Text>
-            Here is where you can provide detailed information or forms to get
-            started.
-          </Text>
-        </VStack>
-      </Box>
-    </>
+    </ParallaxProvider>
   );
 }
