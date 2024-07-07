@@ -1,4 +1,3 @@
-// components/HeroSection.js
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { useEffect, useRef } from "react";
 import { ParallaxProvider, ParallaxBanner } from "react-scroll-parallax";
@@ -26,8 +25,7 @@ export default function HeroSection() {
           className="your-class"
           layers={[
             {
-              image:
-                "https://wallpapers.com/images/hd/cyan-northern-lights-landscape-3sshfp161f2x0y62.jpg",
+              image: "hero_bg.jpg",
               amount: 0.3,
             },
           ]}

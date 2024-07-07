@@ -1,18 +1,24 @@
 // pages/index.js
 import dynamic from "next/dynamic";
 
-// Dynamically import StartedComponent
-const StartedComponent = dynamic(() => import("@/components/StartedComponent"));
-const Navbar = dynamic(() => import("@/components/Navbar"));
-const HeroSection = dynamic(() => import("@/components/HeroSection"));
+// Dynamically import components with ssl=true
+const DynamicNavbar = dynamic(() => import("@/components/Navbar"), {
+  ssl: true,
+});
+const DynamicHeroSection = dynamic(() => import("@/components/HeroSection"), {
+  ssl: true,
+});
+const DynamicStartedComponent = dynamic(
+  () => import("@/components/StartedComponent"),
+  { ssl: true }
+);
 
 export default function Home() {
   return (
     <>
-      <Navbar />
-      <HeroSection />
-      {/* Additional content can go here */}
-      <StartedComponent />
+      <DynamicNavbar />
+      <DynamicHeroSection />
+      <DynamicStartedComponent />
     </>
   );
 }
