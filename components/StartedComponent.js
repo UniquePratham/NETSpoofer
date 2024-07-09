@@ -6,7 +6,6 @@ import {
   Input,
   VStack,
   Heading,
-  Spinner,
   Text,
   HStack,
   List,
@@ -27,12 +26,16 @@ export default function StartedComponent() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
+    const domain = data.get("domain");
     setLoading(true);
+    setError(null);
+    setResult(null);
+
     try {
-      const response = await axios.post("/api/nmap", Object.fromEntries(data));
+      const response = await axios.post("/api/checkDomain", { domain });
       setResult(response.data);
     } catch (error) {
-      setError(error.message);
+      setError("Failed to check domain. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -51,22 +54,10 @@ export default function StartedComponent() {
           >
             Get Started
           </Heading>
-          {result && (
-            <Box w="full">
-              <Heading as="h3" size="lg" mb={4}>
-                Network Stats:
-              </Heading>
-              <pre>{JSON.stringify(result, null, 2)}</pre>
-            </Box>
-          )}
-          {error && (
-            <Box w="full">
-              <Heading as="h3" size="lg" color="red.500" mb={4}>
-                Error Fetching Network Stats:
-              </Heading>
-              <Text>{error}</Text>
-            </Box>
-          )}
+          <Text color="gray.400" textAlign="center">
+            Check if a domain exists or is free to use, and get its IP address
+            and location.
+          </Text>
           <HStack
             spacing={8}
             mt={8}
@@ -83,7 +74,32 @@ export default function StartedComponent() {
               />
             </Box>
             <Box flex="2">
-              <Heading as="h3" size="lg" mb={4}>
+              {result && (
+                <Box w="full" mt={4}>
+                  <Heading as="h3" size="lg" mb={4}>
+                    Domain Information:
+                  </Heading>
+                  {result.ip ? (
+                    <>
+                      <Text>IP Address: {result.ip}</Text>
+                      <Text>Country: {result.location.country}</Text>
+                      <Text>Region: {result.location.region}</Text>
+                      <Text>Timezone: {result.location.timezone}</Text>
+                    </>
+                  ) : (
+                    <Text color="green.500">The domain is free to use.</Text>
+                  )}
+                </Box>
+              )}
+              {error && (
+                <Box w="full" mt={4}>
+                  <Heading as="h3" size="lg" color="red.500" mb={4}>
+                    Error:
+                  </Heading>
+                  <Text>{error}</Text>
+                </Box>
+              )}
+              <Heading as="h3" size="lg" mt={8} mb={4}>
                 What Our Website Can Do:
               </Heading>
               <List spacing={3}>
@@ -109,11 +125,38 @@ export default function StartedComponent() {
               </List>
             </Box>
           </HStack>
-          <Box w="full">
-            
-          </Box>
         </VStack>
       </Center>
+      <Box
+        as="form"
+        onSubmit={handleSubmit}
+        mt={8}
+        p={4}
+        bg="gray.700"
+        borderRadius="md"
+        textAlign="center"
+        w="full"
+      >
+        <FormControl id="domain" mb={4}>
+          <FormLabel>Domain</FormLabel>
+          <Input
+            type="text"
+            placeholder="Enter Domain"
+            name="domain"
+            required
+          />
+        </FormControl>
+        <Button
+          type="submit"
+          colorScheme="teal"
+          size="lg"
+          w="full"
+          isLoading={loading}
+          loadingText="Checking"
+        >
+          Check Domain
+        </Button>
+      </Box>
     </Box>
   );
 }
