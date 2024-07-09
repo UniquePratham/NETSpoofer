@@ -93,6 +93,7 @@ export default function Navbar() {
                   fontWeight: "bolder",
                 }}
                 _hover={{
+                  opacity: "0.9",
                   transform: "scale(1.01)",
                   boxShadow: "1px 2px 3px grey",
                 }}
@@ -103,7 +104,10 @@ export default function Navbar() {
               <MenuList p="3px">
                 <Link as="a" href="/nmap" bg="black">
                   <MenuItem
-                    onClick={scrollToPortScanner}
+                    onClick={() => {
+                      scrollToPortScanner;
+                      onClose; // Close the mobile menu
+                    }}
                     bg="teal.400"
                     border="1px solid black"
                     m="1px"
@@ -120,7 +124,10 @@ export default function Navbar() {
                     Port Scanner
                   </MenuItem>
                   <MenuItem
-                    onClick={scrollToPortScanner}
+                    onClick={() => {
+                      scrollToPortScanner;
+                      onClose; // Close the mobile menu
+                    }}
                     bg="teal.400"
                     border="1px solid black"
                     m="1px"
@@ -137,7 +144,10 @@ export default function Navbar() {
                     Interceptor
                   </MenuItem>
                   <MenuItem
-                    onClick={scrollToPortScanner}
+                    onClick={() => {
+                      scrollToPortScanner;
+                      onClose; // Close the mobile menu
+                    }}
                     bg="teal.400"
                     border="1px solid black"
                     m="1px"
