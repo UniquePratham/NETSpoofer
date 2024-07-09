@@ -16,6 +16,9 @@ const DynamicTerminalComponent = dynamic(
   () => import("@/components/TerminalComponent"),
   { ssl: true }
 );
+const DynamicFooter = dynamic(() => import("@/components/Footer"), {
+  ssl: true,
+});
 
 export default function Home() {
   return (
@@ -24,6 +27,7 @@ export default function Home() {
       <DynamicHeroSection />
       <DynamicStartedComponent />
       <DynamicTerminalComponent />
+      <DynamicFooter />
     </>
   );
 }

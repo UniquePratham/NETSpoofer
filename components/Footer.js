@@ -11,7 +11,7 @@ import {
     useColorModeValue,
     Image,
   } from "@chakra-ui/react";
-  import { FaTwitter, FaYoutube, FaInstagram } from "react-icons/fa";
+  import { FaTwitter, FaYoutube, FaInstagram, FaLinkedin } from "react-icons/fa";
   import NextLink from "next/link";
   import { useEffect, useState } from "react";
   
@@ -69,45 +69,60 @@ import {
         <Container as={Stack} maxW={"6xl"} py={10}>
           <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
             <Stack align={"flex-start"}>
-              <Heading size="md" mb={2}>Quick Links</Heading>
+              <Heading size="md" mb={2}>
+                Quick Links
+              </Heading>
               <Link href={"#home"}>Home</Link>
               <Link href={"#about"}>About</Link>
               <Link href={"#services"}>Services</Link>
               <Link href={"#contact"}>Contact</Link>
             </Stack>
-  
+
             <Stack align={"flex-start"}>
-              <Heading size="md" mb={2}>Company</Heading>
+              <Heading size="md" mb={2}>
+                Company
+              </Heading>
               <Link href={"#about"}>About us</Link>
               <Link href={"#services"}>Our Services</Link>
               <Link href={"#contact"}>Contact</Link>
               <Link href={"#privacy"}>Privacy Policy</Link>
             </Stack>
-  
+
             <Stack align={"flex-start"}>
-              <Heading size="md" mb={2}>Contact Us</Heading>
-              <Text>Email: info@example.com</Text>
-              <Text>Phone: +1 234 567 890</Text>
-              <Text>Address: 1234 Example St, City, Country</Text>
+              <Heading size="md" mb={2}>
+                Contact Us
+              </Heading>
+              <Text>Email: acodernamedsubhro@gmail.com</Text>
+              <Text>Address: SaltLake Kolkata, India</Text>
             </Stack>
-  
+
             <Stack align={"flex-start"}>
-              <Heading size="md" mb={2}>Follow Us</Heading>
+              <Heading size="md" mb={2}>
+                Follow Us
+              </Heading>
               <Stack direction={"row"} spacing={6}>
                 <SocialButton label={"Twitter"} href={"https://twitter.com"}>
                   <FaTwitter />
                 </SocialButton>
-                <SocialButton label={"YouTube"} href={"https://youtube.com"}>
+                <SocialButton
+                  label={"YouTube"}
+                  href={
+                    "https://www.youtube.com/channel/UC7M2V6WGxompzcrD2vXfybw"
+                  }
+                >
                   <FaYoutube />
                 </SocialButton>
-                <SocialButton label={"Instagram"} href={"https://instagram.com"}>
+                <SocialButton
+                  label={"Instagram"}
+                  href={"https://www.instagram.com/subhro1530/"}
+                >
                   <FaInstagram />
                 </SocialButton>
               </Stack>
             </Stack>
           </SimpleGrid>
         </Container>
-  
+
         <Box py={10}>
           <Container
             as={Stack}
@@ -118,16 +133,32 @@ import {
             align={{ md: "center" }}
           >
             <Logo />
-            <Text>© 2024 Your Company. All rights reserved</Text>
+            <Text>© 2024 ACNS. All rights reserved</Text>
             <Stack direction={"row"} spacing={6}>
               <SocialButton label={"Twitter"} href={"https://twitter.com"}>
                 <FaTwitter />
               </SocialButton>
-              <SocialButton label={"YouTube"} href={"https://youtube.com"}>
+              <SocialButton
+                label={"YouTube"}
+                href={
+                  "https://www.youtube.com/channel/UC7M2V6WGxompzcrD2vXfybw"
+                }
+              >
                 <FaYoutube />
               </SocialButton>
-              <SocialButton label={"Instagram"} href={"https://instagram.com"}>
+              <SocialButton
+                label={"Instagram"}
+                href={"https://www.instagram.com/subhro1530/"}
+              >
                 <FaInstagram />
+              </SocialButton>
+              <SocialButton
+                label={"Instagram"}
+                href={
+                  "https://www.linkedin.com/in/shaswata-saha-74b209251"
+                }
+              >
+                <FaLinkedin />
               </SocialButton>
             </Stack>
           </Container>
