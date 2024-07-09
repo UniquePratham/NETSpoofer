@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
           name="description"
           content="Analyze your web network traffic with NETSpoofers"
         />
-        <link rel="icon" href="/icon.ico" />
+        <link rel="icon" href="/icon.png" />
       </Head>
       <Component {...pageProps} />
     </ChakraProvider>

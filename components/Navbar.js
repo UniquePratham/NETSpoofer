@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Links = ["Home", "About", "Contact"];
 
@@ -39,6 +39,7 @@ const NavLink = ({ children }) => (
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [mounted, setMounted] = useState(false);
+  const portScannerRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
@@ -48,6 +49,13 @@ export default function Navbar() {
     // Return null on initial render to avoid mismatch between server and client
     return null;
   }
+
+  const scrollToPortScanner = () => {
+    if (portScannerRef.current) {
+      portScannerRef.current.scrollIntoView({ behavior: "smooth" });
+      onClose(); // Close the mobile menu after navigation
+    }
+  };
 
   return (
     <Box bg="gray.900" px={4}>
@@ -74,9 +82,11 @@ export default function Navbar() {
                 Tools
               </MenuButton>
               <MenuList>
-                <MenuItem as={NextLink} href="#port-scanner">
-                  Port Scanner
-                </MenuItem>
+                <Link as="a" href="/nmap" bg="black">
+                  <MenuItem onClick={scrollToPortScanner}>
+                    Port Scanner
+                  </MenuItem>
+                </Link>
               </MenuList>
             </Menu>
           </HStack>
@@ -86,7 +96,7 @@ export default function Navbar() {
             <Link
               px={4}
               py={2}
-              color="black"
+              color="white"
               rounded={"md"}
               bg="teal.400"
               _hover={{ bg: "teal.300" }}
@@ -108,9 +118,7 @@ export default function Navbar() {
                 Tools
               </MenuButton>
               <MenuList>
-                <MenuItem as={NextLink} href="#port-scanner">
-                  Port Scanner
-                </MenuItem>
+                <MenuItem onClick={scrollToPortScanner}>Port Scanner</MenuItem>
               </MenuList>
             </Menu>
           </Stack>
