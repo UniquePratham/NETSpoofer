@@ -1,5 +1,6 @@
 // components/NmapScanner.js
 import { useState } from "react";
+import { Box, Button, Input, Textarea, Text } from "@chakra-ui/react";
 
 const NmapScanner = () => {
   const [target, setTarget] = useState("");
@@ -7,12 +8,15 @@ const NmapScanner = () => {
   const [error, setError] = useState(null);
 
   const handleScan = async () => {
+    setError(null);
+    setScanResult(null);
+
     try {
       const res = await fetch(`/api/nmapScan?target=${target}`);
       const data = await res.json();
 
       if (res.ok) {
-        setScanResult(data);
+        setScanResult(data.result);
       } else {
         setError(data.error);
       }
@@ -22,23 +26,27 @@ const NmapScanner = () => {
   };
 
   return (
-    <div>
-      <h1>Nmap Scanner</h1>
-      <input
+    <Box p={4}>
+      <Text fontSize="2xl" mb={4}>
+        Nmap Scanner
+      </Text>
+      <Input
         type="text"
         value={target}
         onChange={(e) => setTarget(e.target.value)}
         placeholder="Enter target (e.g., 192.168.1.1)"
+        mb={4}
       />
-      <button onClick={handleScan}>Scan</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {scanResult && (
-        <div>
-          <h2>Scan Result:</h2>
-          <pre>{JSON.stringify(scanResult, null, 2)}</pre>
-        </div>
+      <Button onClick={handleScan} colorScheme="teal">
+        Scan
+      </Button>
+      {error && (
+        <Text color="red.500" mt={4}>
+          {error}
+        </Text>
       )}
-    </div>
+      {scanResult && <Textarea mt={4} value={scanResult} readOnly rows={10} />}
+    </Box>
   );
 };
 

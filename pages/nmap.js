@@ -1,11 +1,13 @@
 // pages/nmap.js
+import { ChakraProvider } from "@chakra-ui/react";
 import NmapScanner from "../components/NmapScanner";
+import { Box } from "@chakra-ui/react";
 
 const NmapPage = () => {
   return (
-    <div>
+    <Box p={4}>
       <NmapScanner />
-    </div>
+    </Box>
   );
 };
 

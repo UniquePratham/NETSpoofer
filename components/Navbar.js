@@ -8,12 +8,17 @@ import {
   useDisclosure,
   Stack,
   Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Button,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import NextLink from "next/link";
 import { useEffect, useState } from "react";
 
-const Links = ["Home", "About", "Services", "Contact"];
+const Links = ["Home", "About", "Contact"];
 
 const NavLink = ({ children }) => (
   <NextLink href={`#${children.toLowerCase()}`} passHref>
@@ -64,6 +69,16 @@ export default function Navbar() {
             {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
             ))}
+            <Menu>
+              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                Tools
+              </MenuButton>
+              <MenuList>
+                <MenuItem as={NextLink} href="#port-scanner">
+                  Port Scanner
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </HStack>
         </HStack>
         <Flex alignItems={"center"}>
@@ -71,7 +86,7 @@ export default function Navbar() {
             <Link
               px={4}
               py={2}
-              color="white"
+              color="black"
               rounded={"md"}
               bg="teal.400"
               _hover={{ bg: "teal.300" }}
@@ -88,6 +103,16 @@ export default function Navbar() {
             {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
             ))}
+            <Menu>
+              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                Tools
+              </MenuButton>
+              <MenuList>
+                <MenuItem as={NextLink} href="#port-scanner">
+                  Port Scanner
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </Stack>
         </Box>
       )}
