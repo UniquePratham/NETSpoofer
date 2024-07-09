@@ -12,6 +12,10 @@ const DynamicStartedComponent = dynamic(
   () => import("@/components/StartedComponent"),
   { ssl: true }
 );
+const DynamicTerminalComponent = dynamic(
+  () => import("@/components/TerminalComponent"),
+  { ssl: true }
+);
 
 export default function Home() {
   return (
@@ -19,6 +23,7 @@ export default function Home() {
       <DynamicNavbar />
       <DynamicHeroSection />
       <DynamicStartedComponent />
+      <DynamicTerminalComponent />
     </>
   );
 }
