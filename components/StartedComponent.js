@@ -102,7 +102,6 @@ export default function StartedComponent() {
                   alt="Network illustration"
                   maxW={{ base: "300px", md: "500px" }}
                   mx="auto"
-                  ml={{base:"3.8rem",md:"unset"}}
                 />
               </Box>
               <Box flex="2" ml={[0, 0, 4]} textAlign={{base:"center",md:"unset"}}>
