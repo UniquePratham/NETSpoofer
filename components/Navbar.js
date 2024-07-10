@@ -14,7 +14,12 @@ import {
   MenuItem,
   Button,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import {
+  HamburgerIcon,
+  CloseIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from "@chakra-ui/icons";
 import NextLink from "next/link";
 import { useEffect, useState, useRef } from "react";
 
@@ -78,13 +83,85 @@ export default function Navbar() {
               <NavLink key={link}>{link}</NavLink>
             ))}
             <Menu>
-              <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              <MenuButton
+                as={Button}
+                rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                onClick={isOpen ? onClose : onOpen}
+                _active={{
+                  bg: "white",
+                  color: "teal.400",
+                  fontWeight: "bolder",
+                }}
+                _hover={{
+                  opacity: "0.9",
+                  transform: "scale(1.01)",
+                  boxShadow: "1px 2px 3px grey",
+                }}
+                transition="all 0.2s ease-in-out"
+              >
                 Tools
               </MenuButton>
-              <MenuList>
+              <MenuList p="3px">
                 <Link as="a" href="/nmap" bg="black">
-                  <MenuItem onClick={scrollToPortScanner}>
+                  <MenuItem
+                    onClick={() => {
+                      scrollToPortScanner;
+                      onClose; // Close the mobile menu
+                    }}
+                    bg="teal.400"
+                    border="1px solid black"
+                    m="1px"
+                    color="black"
+                    _hover={{
+                      bg: "black",
+                      color: "teal.400",
+                      textShadow: "1px 1px 1px 1px grey",
+                      transform: "scale(1.05)",
+                      boxShadow: "2px 3px 4px grey",
+                    }}
+                    transition="transform 0.3s ease-in-out"
+                  >
                     Port Scanner
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      scrollToPortScanner;
+                      onClose; // Close the mobile menu
+                    }}
+                    bg="teal.400"
+                    border="1px solid black"
+                    m="1px"
+                    color="black"
+                    _hover={{
+                      bg: "black",
+                      color: "teal.400",
+                      textShadow: "1px 1px 1px 1px grey",
+                      transform: "scale(1.05)",
+                      boxShadow: "2px 3px 4px grey",
+                    }}
+                    transition="transform 0.3s ease-in-out"
+                  >
+                    Interceptor
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      scrollToPortScanner;
+                      onClose; // Close the mobile menu
+                    }}
+                    bg="teal.400"
+                    border="1px solid black"
+                    m="1px"
+                    color="black"
+                    _hover={{
+                      bg: "black",
+                      color: "teal.400",
+                      textShadow: "1px 1px 1px 1px grey",
+                      transform: "scale(1.05)",
+                      boxShadow: "2px 3px 4px grey",
+                    }}
+                    transition="transform 0.3s ease-in-out"
+                  >
+                    SQL Injector
                   </MenuItem>
                 </Link>
               </MenuList>
