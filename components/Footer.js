@@ -73,20 +73,20 @@ export default function Footer() {
             <Heading size="md" mb={2}>
               Quick Links
             </Heading>
-            <Link href={"#home"}>Home</Link>
-            <Link href={"#about"}>About</Link>
-            <Link href={"#services"}>Services</Link>
-            <Link href={"#contact"}>Contact</Link>
+            <Link href={"/"}>Home</Link>
+            <Link href={"/about"}>About</Link>
+            <Link href={"/services"}>Services</Link>
+            <Link href={"/contact"}>Contact</Link>
           </Stack>
 
           <Stack align={"flex-start"}>
             <Heading size="md" mb={2}>
               Company
             </Heading>
-            <Link href={"#about"}>About us</Link>
-            <Link href={"#services"}>Our Services</Link>
-            <Link href={"#contact"}>Contact</Link>
-            <Link href={"#privacy"}>Privacy Policy</Link>
+            <Link href={"/about"}>About us</Link>
+            <Link href={"/services"}>Our Services</Link>
+            <Link href={"/contact"}>Contact</Link>
+            <Link href={"/privacy"}>Privacy Policy</Link>
           </Stack>
 
           <Stack align={"flex-start"}>

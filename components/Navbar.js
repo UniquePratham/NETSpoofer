@@ -26,7 +26,7 @@ import { useEffect, useState, useRef } from "react";
 const Links = ["Home", "About", "Contact"];
 
 const NavLink = ({ children }) => (
-  <NextLink href={`#${children.toLowerCase()}`} passHref>
+  <NextLink href={`/${(children.toLowerCase()=="home")?"":children.toLowerCase()}`} passHref>
     <Link
       px={2}
       py={1}
