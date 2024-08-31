@@ -15,7 +15,7 @@ export default function TerminalComponent() {
     websocket.onmessage = (event) => {
       setOutput((prev) => prev + "\n" + event.data);
     };
-
+    
     websocket.onclose = () => {
       console.log("WebSocket connection closed");
     };
@@ -83,7 +83,7 @@ export default function TerminalComponent() {
       <div
         style={{
           marginTop: "20px",
-          backgroundColor: "#1e1e1e",
+          backgroundColor: "#1e1e1e", 
           padding: "10px",
           borderRadius: "5px",
           height: "400px",
