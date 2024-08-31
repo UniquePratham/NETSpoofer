@@ -14,7 +14,7 @@ const DynamicStartedComponent = dynamic(
 );
 const DynamicTerminalComponent = dynamic(
   () => import("@/components/TerminalComponent"),
-  { ssl: true }
+  { ssl: false }
 );
 const DynamicFooter = dynamic(() => import("@/components/Footer"), {
   ssl: true,

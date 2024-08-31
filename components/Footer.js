@@ -28,6 +28,7 @@ const Logo = () => {
 const SocialButton = ({ children, label, href }) => {
   const bg = useColorModeValue("blackAlpha.100", "whiteAlpha.100");
   const hoverBg = useColorModeValue("blackAlpha.200", "whiteAlpha.200");
+  const hoverColor = useColorModeValue("teal.400", "teal.300");
 
   return (
     <chakra.button
@@ -41,9 +42,11 @@ const SocialButton = ({ children, label, href }) => {
       display={"inline-flex"}
       alignItems={"center"}
       justifyContent={"center"}
-      transition={"background 0.3s ease"}
+      transition={"background 0.3s ease, transform 0.3s ease"}
       _hover={{
         bg: hoverBg,
+        color: hoverColor,
+        transform: "scale(1.2)",
       }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
@@ -55,7 +58,8 @@ const SocialButton = ({ children, label, href }) => {
 export default function Footer() {
   const [mounted, setMounted] = useState(false);
   const bg = useColorModeValue("gray.900", "gray.900");
-  const color = useColorModeValue("gray.200", "gray.200");
+  const usedcolor = useColorModeValue("gray.200", "gray.200");
+  const hoverLinkColor = useColorModeValue("teal.400", "teal.300");
 
   useEffect(() => {
     setMounted(true);
@@ -66,27 +70,67 @@ export default function Footer() {
   }
 
   return (
-    <Box bg={bg} color={color}>
+    <Box bg={bg} color={usedcolor}>
       <Container as={Stack} maxW={"6xl"} py={10}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
           <Stack align={"flex-start"}>
             <Heading size="md" mb={2}>
               Quick Links
             </Heading>
-            <Link href={"/"}>Home</Link>
-            <Link href={"/about"}>About</Link>
-            <Link href={"/services"}>Services</Link>
-            <Link href={"/contact"}>Contact</Link>
+            <Link
+              href={"/"}
+              _hover={{ color: hoverLinkColor, textDecoration: "underline" }}
+            >
+              Home
+            </Link>
+            <Link
+              href={"/about"}
+              _hover={{ color: hoverLinkColor, textDecoration: "underline" }}
+            >
+              About
+            </Link>
+            <Link
+              href={"/services"}
+              _hover={{ color: hoverLinkColor, textDecoration: "underline" }}
+            >
+              Services
+            </Link>
+            <Link
+              href={"/contact"}
+              _hover={{ color: hoverLinkColor, textDecoration: "underline" }}
+            >
+              Contact
+            </Link>
           </Stack>
 
           <Stack align={"flex-start"}>
             <Heading size="md" mb={2}>
               Company
             </Heading>
-            <Link href={"/about"}>About us</Link>
-            <Link href={"/services"}>Our Services</Link>
-            <Link href={"/contact"}>Contact</Link>
-            <Link href={"/privacy"}>Privacy Policy</Link>
+            <Link
+              href={"https://acns.vercel.app/#About"}
+              _hover={{ color: hoverLinkColor, textDecoration: "underline" }}
+            >
+              About us
+            </Link>
+            <Link
+              href={"https://acns.vercel.app/#Services"}
+              _hover={{ color: hoverLinkColor, textDecoration: "underline" }}
+            >
+              Our Services
+            </Link>
+            <Link
+              href={"https://acns.vercel.app/#Contact"}
+              _hover={{ color: hoverLinkColor, textDecoration: "underline" }}
+            >
+              Contact
+            </Link>
+            <Link
+              href={"https://acns.vercel.app/#About"}
+              _hover={{ color: hoverLinkColor, textDecoration: "underline" }}
+            >
+              Privacy Policy
+            </Link>
           </Stack>
 
           <Stack align={"flex-start"}>
@@ -119,6 +163,12 @@ export default function Footer() {
               >
                 <FaInstagram />
               </SocialButton>
+              <SocialButton
+                label={"LinkedIn"}
+                href={"https://www.linkedin.com/in/shaswata-saha-74b209251"}
+              >
+                <FaLinkedin />
+              </SocialButton>
             </Stack>
           </Stack>
         </SimpleGrid>
@@ -141,7 +191,9 @@ export default function Footer() {
             </SocialButton>
             <SocialButton
               label={"YouTube"}
-              href={"https://www.youtube.com/channel/UC7M2V6WGxompzcrD2vXfybw"}
+              href={
+                "https://www.youtube.com/channel/UC7M2V6WGxompzcrD2vXfybw"
+              }
             >
               <FaYoutube />
             </SocialButton>
@@ -152,7 +204,7 @@ export default function Footer() {
               <FaInstagram />
             </SocialButton>
             <SocialButton
-              label={"Instagram"}
+              label={"LinkedIn"}
               href={"https://www.linkedin.com/in/shaswata-saha-74b209251"}
             >
               <FaLinkedin />
