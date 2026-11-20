@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default async function handler(req, res) {
   const { domain } = req.body;
-  const apiKey = "at_qVJY33ocLBFDLTQgpBYCr8opDLUbd"; // Replace with your actual API key
+  const apiKey = process.env.ABSTRACT_API_KEY; // Replace with your actual API key
 
   try {
     const response = await axios.get(`https://geo.ipify.org/api/v2/country`, {
